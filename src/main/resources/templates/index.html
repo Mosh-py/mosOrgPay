@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MosorgPay - Internal Payment Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #6C43B9;
+            --accent-purple: #8E6DD7;
+            --dark-purple: #4A2D7A;
+            --light-bg: #f9f6ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-purple) 100%);
+            padding: 4rem 1rem;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            width: 180px;
+            margin: 2rem auto;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.1));
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-purple);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 5px 15px rgba(108, 67, 185, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            background: var(--dark-purple);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <img src="images/logo.png" alt="MosorgPay Logo" class="logo">
+            <h1>Revolutionize Internal Payments</h1>
+            <p class="tagline">Transform your organization's financial ecosystem with seamless digital transactions</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="content-section">
+            <p class="description">
+                MosorgPay is a cutting-edge SaaS platform redefining internal financial operations. 
+                Empower your organization with digital currency solutions for bonuses, incentives, 
+                and secure intra-company transactions.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3>Secure Transactions</h3>
+                    <p>Military-grade encryption for all financial operations</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-rocket feature-icon"></i>
+                    <h3>Instant Processing</h3>
+                    <p>Real-time transaction processing and verification</p>
+                </div>
+              
+            </div>
+
+            <div class="cta-buttons">
+                <a href="/organisationSignUp" class="btn btn-primary">
+                    <i class="fas fa-building"></i>
+                    Company SignUp
+                </a>
+                <a href="/employeeLogin" class="btn btn-secondary">
+                    <i class="fas fa-user-tie"></i>
+                    Employee Login
+                </a>
+                <a href="/employeeSignUp" class="btn btn-secondary">
+                    <i class="fas fa-user-tie"></i>
+                    Employee SignUp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 MosorgPay. All rights reserved.</p>
+    </footer>
+</body>
+</html>
