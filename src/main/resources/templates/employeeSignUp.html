@@ -1,187 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Registration - MosorgPay</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Registration - MosorgPay</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #6C43B9 0%, #8E6DD7 100%);
-            padding: 20px;
-        }
+body {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(135deg, #6C43B9 0%, #8E6DD7 100%);
+	padding: 20px;
+}
 
-        .form-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 500px;
-        }
+.form-container {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 40px;
+	border-radius: 20px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 500px;
+}
 
-        h2 {
-            color: #6C43B9;
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 2em;
-        }
+h2 {
+	color: #6C43B9;
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 2em;
+}
 
-        .form-group {
-            margin-bottom: 25px;
-            position: relative;
-        }
+.form-group {
+	margin-bottom: 25px;
+	position: relative;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #4A2D7A;
-            font-weight: 500;
-        }
+label {
+	display: block;
+	margin-bottom: 8px;
+	color: #4A2D7A;
+	font-weight: 500;
+}
 
-        input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            padding-left: 40px;
-        }
+input {
+	width: 100%;
+	padding: 12px 15px;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	font-size: 16px;
+	transition: all 0.3s ease;
+	padding-left: 40px;
+}
 
-        input:focus {
-            outline: none;
-            border-color: #8E6DD7;
-            box-shadow: 0 0 8px rgba(142, 109, 215, 0.2);
-        }
+input:focus {
+	outline: none;
+	border-color: #8E6DD7;
+	box-shadow: 0 0 8px rgba(142, 109, 215, 0.2);
+}
 
-        .input-icon {
-            position: absolute;
-            left: 12px;
-            top: 38px;
-            color: #6C43B9;
-        }
+.input-icon {
+	position: absolute;
+	left: 12px;
+	top: 38px;
+	color: #6C43B9;
+}
 
-        button {
-            background: linear-gradient(135deg, #6C43B9 0%, #4A2D7A 100%);
-            color: white;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 8px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            margin-top: 15px;
-        }
+button {
+	background: linear-gradient(135deg, #6C43B9 0%, #4A2D7A 100%);
+	color: white;
+	padding: 14px 20px;
+	border: none;
+	border-radius: 8px;
+	width: 100%;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+	margin-top: 15px;
+}
 
-        button:hover {
-            transform: translateY(-2px);
-        }
+button:hover {
+	transform: translateY(-2px);
+}
 
-        /* Two-column layout for names */
-        .name-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+/* Two-column layout for names */
+.name-group {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+}
 
-        @media (max-width: 480px) {
-            .form-container {
-                padding: 25px;
-            }
-            
-            h2 {
-                font-size: 1.75em;
-            }
-            
-            .name-group {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+@media ( max-width : 480px) {
+	.form-container {
+		padding: 25px;
+	}
+	h2 {
+		font-size: 1.75em;
+	}
+	.name-group {
+		grid-template-columns: 1fr;
+	}
+}
+</style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Employee Registration</h2>
-        <form action="/employeeSignUp" method="post">
-            <div class="name-group">
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" 
-                           id="firstName" 
-                           name="firstName" 
-                           placeholder="Enter first name"
-                           required>
-                </div>
 
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <i class="fas fa-user-tag input-icon"></i>
-                    <input type="text" 
-                           id="lastName" 
-                           name="lastName" 
-                           placeholder="Enter last name"
-                           required>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <i class="fas fa-envelope input-icon"></i>
-                <input type="email" 
-                       id="email" 
-                       name="emailAddress" 
-                       placeholder="example@company.com"
-                       required>
-            </div>
+	<form action="/employeeSignUp" method="post">
 
-            <div class="form-group">
-                <label for="phoneNumber">Phone Number</label>
-                <i class="fas fa-phone input-icon"></i>
-                <input type="tel" 
-                       id="phoneNumber" 
-                       name="phoneNumber" 
-                       placeholder="Enter phone number"
-                       pattern="[0-9]{10}"
-                       required>
-            </div>
-            
-            <div class="form-group">
-                <label for="companyId">Enter your Company Id</label>
-                <i class="fas fa-phone input-icon"></i>
-                <input type="text" 
-                       id="organisation" 
-                       name="organisation" 
-                       >
-            </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <i class="fas fa-lock input-icon"></i>
-                <input type="password" 
-                       id="password" 
-                       name="password" 
-                       placeholder="Create password"
-                       minlength="8"
-                       required>
-            </div>
 
-            <button type="submit">Create Employee Account</button>
-        </form>
-    </div>
+		<div class="form-container">
+			<h2>Employee Registration</h2>
+
+			<div class="form-group">
+				<label for="companyId">Enter your Employee Identity number</label> <input
+					type="text" id="organisation" name="id">
+			</div>
+			
+			<div class="name-group">
+				<div class="form-group">
+					<label for="firstName">First Name</label> <i
+						class="fas fa-user input-icon"></i> <input type="text"
+						id="firstName" name="firstName" placeholder="Enter first name"
+						required>
+				</div>
+
+				<div class="form-group">
+					<label for="lastName">Second Name</label> <i
+						class="fas fa-user-tag input-icon"></i> <input type="text"
+						id="lastName" name="secondName" placeholder="Enter last name"
+						required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email Address</label> <i
+					class="fas fa-envelope input-icon"></i> <input type="email"
+					id="email" name="emailAddress" placeholder="example@company.com"
+					required>
+			</div>
+
+			<div class="form-group">
+				<label for="phoneNumber">Phone Number</label> <i
+					class="fas fa-phone input-icon"></i> <input type="tel"
+					id="phoneNumber" name="phoneNumber"
+					placeholder="Enter phone number" pattern="[0-9]{10}" required>
+			</div>
+
+			<div class="form-group">
+				<label for="organisationCode">Enter your Company Code</label> <i
+					class="fas fa-phone input-icon"></i> <input type="text"
+					id="organisation" name="organisationCode">
+			</div>
+
+			<div class="form-group">
+				<label for="password">Password</label> <i
+					class="fas fa-lock input-icon"></i> <input type="password"
+					id="password" name="password" placeholder="Create password"
+					minlength="8" required>
+			</div>
+
+			<button type="submit">Create Employee Account</button>
+	</form>
+	</div>
 </body>
 </html>

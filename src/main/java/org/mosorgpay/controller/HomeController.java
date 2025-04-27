@@ -2,6 +2,7 @@ package org.mosorgpay.controller;
 
 import java.util.logging.Logger;
 
+import org.mosorgpay.dto.EmployeeDto;
 import org.mosorgpay.dto.OrganisationDto;
 import org.mosorgpay.model.Employee;
 import org.mosorgpay.model.Organisation;
@@ -19,43 +20,49 @@ public class HomeController {
 	private final EmployeeService employeeService;
 	private final Logger logger = Logger.getLogger("Home Controller");
 	private final OrganisationService organisationService;
+
 	private HomeController(EmployeeService employeeService, OrganisationService organisationService) {
 		this.employeeService = employeeService;
 		this.organisationService = organisationService;
 	}
+
 	@GetMapping("")
 	public String getHomePage() {
 		return "index";
 	}
 	
-	
+	@GetMapping("/employeeLogin")
+	public String getLogIn() {
+		return "employeeLogIn.html";
+	}
+
 	@GetMapping("/organisationSignUp")
-	public String getCompanySignUpPage(){
+	public String getCompanySignUpPage() {
 		return "companySignUp";
 	}
-	
+
 	@GetMapping("/employeeSignUp")
 	public String getEmployeeSignUpPage() {
 		return "employeeSignUp";
 	}
-	
-	@PostMapping("/employeeSignUp")
-	public String submitEmployeeDetails( @RequestParam Employee employee) {
-		employeeService.save(employee);
-		return " Done Sucessfully ";
-	}
+
 	
 	@PostMapping("/companySignUp")
-	public String submitOrganisayionDetails( @ModelAttribute OrganisationDto organisationDto) {
-		
-		
-		Organisation organisation = new Organisation();
-		logger.info(organisationDto.getOrganisationName());
-		organisation.setName(organisationDto.getOrganisationName());
-		organisation.setPassword(organisationDto.getOrganisationPassword());
-		organisation.setCompanyCode(organisationDto.getOrganisationCode());
-		
-		organisationService.save(organisation);
+	public String submitOrganisationDetails(@ModelAttribute OrganisationDto organisationDto) {
+
+		organisationService.register(organisationDto);
 		return "test";
+		
+	}
+
+	@PostMapping("/employeeSignUp")
+	public String submitEmployeeDetails(@ModelAttribute EmployeeDto employeeDto) {
+		employeeService.register(employeeDto);
+		return "test";
+	}
+	
+	@GetMapping("/welcomeEmployee")
+	public String getMainPage() {
+		return "employeeWelcome";
 	}
 }

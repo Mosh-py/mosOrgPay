@@ -4,7 +4,7 @@ import org.mosorgpay.model.Employee;
 
 public interface Service {
 
-	String save(Object obj);
+	String register(Object obj);
 	
 	String delete(Object obj);
 }

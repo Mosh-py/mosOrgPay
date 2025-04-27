@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - MosorgPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6C43B9 0%, #8E6DD7 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .branding {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .branding img {
+            width: 120px;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: #6C43B9;
+            margin-right: 1rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            background: #6C43B9;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #4A2D7A;
+            transform: translateY(-2px);
+        }
+
+        /* Chat Interface */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 350px;
+            max-height: 500px;
+            display: none;
+        }
+
+        .chat-header {
+            background: #6C43B9;
+            color: white;
+            padding: 1rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #6C43B9;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="branding">
+                <img src="logo.png" alt="MosorgPay Logo">
+                <h2>Employee Portal</h2>
+            </div>
+            
+            <nav class="main-nav">
+                <div class="quick-actions">
+                    <a href="#profile" class="action-btn">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#settings" class="action-btn">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1>Welcome Back, <span style = "color:purple"> John </span> </h1>
+            <div class="balance-display">
+                <h2>Current Balance: 2,450 Credits</h2>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="cards-grid">
+                <!-- Account Management Card -->
+                <div class="feature-card">
+                    <div class="card-header">
+                        <i class="fas fa-user-shield card-icon"></i>
+                        <h3>Account Management</h3>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#profile" class="action-btn">View Profile</a>
+                        <a href="#security" class="action-btn">Security Settings</a>
+                        <a href="#statements" class="action-btn">Download Statements</a>
+                    </div>
+                </div>
+
+                <!-- Transactions Card -->
+                <div class="feature-card">
+                    <div class="card-header">
+                        <i class="fas fa-exchange-alt card-icon"></i>
+                        <h3>Transactions</h3>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#send-money" class="action-btn">Send Money</a>
+                        <a href="#request-funds" class="action-btn">Request Funds</a>
+                        <a href="#history" class="action-btn">Transaction History</a>
+                    </div>
+                </div>
+
+                <!-- Financial Tools Card -->
+                <div class="feature-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line card-icon"></i>
+                        <h3>Financial Tools</h3>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#budget" class="action-btn">Budget Planner</a>
+                        <a href="#savings" class="action-btn">Savings Goals</a>
+                        <a href="#reports" class="action-btn">Generate Reports</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Toggle -->
+            <div class="chat-toggle" onclick="toggleChat()">
+                <i class="fas fa-comments"></i>
+            </div>
+
+            <!-- Chat Widget -->
+            <div class="chat-widget" id="chatWidget">
+                <div class="chat-header">
+                    <h4>Support Chat</h4>
+                    <button onclick="toggleChat()">×</button>
+                </div>
+                <div class="chat-body">
+                    <!-- Chat messages would go here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chatWidget = document.getElementById('chatWidget');
+            chatWidget.style.display = chatWidget.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

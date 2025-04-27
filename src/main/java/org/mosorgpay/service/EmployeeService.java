@@ -1,30 +1,52 @@
 package org.mosorgpay.service;
 
+import org.mosorgpay.dto.EmployeeDto;
 import org.mosorgpay.model.Employee;
-import org.mosorgpay.model.EmployeeRepository;
+import org.mosorgpay.repository.EmployeeRepository;
+import org.mosorgpay.repository.OrganisationRepository;
 import org.mosorgpay.serviceInterface.Service;
 
 @org.springframework.stereotype.Service
 public class EmployeeService implements Service {
 
 	private final EmployeeRepository repository;
+	private final OrganisationRepository organisationRepository;
 	
-	public EmployeeService(EmployeeRepository repository) {
+	public EmployeeService(EmployeeRepository repository, OrganisationRepository organisationRepository) {
 		this.repository = repository;
+		this.organisationRepository = organisationRepository;
 	}
-	@Override
-	public String save(Object obj ) {
-		Employee employee = (Employee) obj;
+	
+	public String register(Object obj) {
+		EmployeeDto dto = (EmployeeDto) obj;
+		
+		Employee employee = new Employee();
+		employee.setEmailAddress(dto.getEmailAddress());
+		employee.setFirstName(dto.getFirstName());
+		System.out.println(dto.getId());
+		employee.setId(dto.getId());
+		employee.setPassword(dto.getPassword());
+		employee.setPhoneNumber(dto.getPhoneNumber());
+		employee.setSecondName(dto.getSecondName());
+		try {
+			String organizationCode = dto.getOrganisationCode();
+			System.out.println(organizationCode);		
+			employee.setOrganisation(organisationRepository.findById(dto.getOrganisationCode()).get());
+		}
+			
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		repository.save(employee);
-		return " ";
+		return "done";
 	}
-
-	@Override
+	
 	public String delete(Object obj) {
-		// TODO Auto-generated method stub
-		Employee employee = (Employee) obj;
-		repository.delete(employee);
-		return "";
+		 String id = (String) obj;
+		 
+		
+		 
+		 return "to be determined";
 	}
 
 }

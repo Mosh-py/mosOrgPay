@@ -1,5 +1,6 @@
 package org.mosorgpay.service;
 
+import org.mosorgpay.dto.OrganisationDto;
 import org.mosorgpay.model.Organisation;
 import org.mosorgpay.repository.OrganisationRepository;
 import org.mosorgpay.serviceInterface.Service;
@@ -14,12 +15,17 @@ public class OrganisationService implements Service {
 		this.repository = repository;
 	}
 	@Override
-	public String save(Object obj) {
-		Organisation organisation = (Organisation) obj;
+	public String register(Object obj) {
+		OrganisationDto dto = (OrganisationDto) obj;
+		Organisation organisation = new Organisation();
+		
+		organisation.setCompanyCode(dto.getOrganisationCode());
+		organisation.setName(dto.getOrganisationName());
+		organisation.setPassword(dto.getOrganisationPassword());
 		repository.save(organisation);
 		                                                                                                                                                                                                                                                                                                                
 		// TODO Auto-generated method stub
-		return null;
+		return "done";
 	}
 
 	@Override

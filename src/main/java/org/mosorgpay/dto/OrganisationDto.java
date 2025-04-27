@@ -8,4 +8,4 @@ public class OrganisationDto {
 	private String organisationName;
 	private String organisationPassword;
 	
-}
+ }

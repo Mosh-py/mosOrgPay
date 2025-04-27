@@ -1,7 +1,10 @@
-package org.mosorgpay.model;
+package org.mosorgpay.repository;
 
 
 
+import java.util.UUID;
+
+import org.mosorgpay.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
