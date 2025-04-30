@@ -12,6 +12,6 @@ public class ProfileController {
 	public String checkProfile() {
 		
 		
-		return "viewProfile.html";
+		return "profileViewer.html";
 	}
 }	

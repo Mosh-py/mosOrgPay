@@ -8,11 +8,15 @@ import org.mosorgpay.model.Employee;
 import org.mosorgpay.model.Organisation;
 import org.mosorgpay.service.EmployeeService;
 import org.mosorgpay.service.OrganisationService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -55,7 +59,7 @@ public class HomeController {
 		
 	}
 
-	@PostMapping("/employeeSignUp")
+	@PostMapping("/employeeSignUp")	
 	public String submitEmployeeDetails(@ModelAttribute EmployeeDto employeeDto) {
 		employeeService.register(employeeDto);
 		return "test";
@@ -65,4 +69,21 @@ public class HomeController {
 	public String getMainPage() {
 		return "employeeWelcome";
 	}
+	
+	@GetMapping("/dashboard")
+	public String getDashboardPage(Authentication auth, HttpSession session) {
+		var name = auth.getName();
+		Employee employee = employeeService.fetchEmployee(name);
+		session.setAttribute("employee", employee);
+		return "employeeWelcome";
+	}
+	
+//	@PostMapping("/employeeLogin")
+//	public String returnSuccessful(Authentication auth, Model model) {
+//			
+//		String something = auth.getName();
+//		logger.info(something);
+//		model.addAttribute("username", something);
+//		return "employeeWelcome";
+//	}
 }
