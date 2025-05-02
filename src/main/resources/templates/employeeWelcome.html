@@ -165,7 +165,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="branding">
-                <img src="logo.png" alt="MosorgPay Logo">
+                <img src="images/mosOrg.png" alt="MosorgPay Logo">
                 <h2>Employee Portal</h2>
             </div>
             
@@ -187,7 +187,7 @@
         <main class="main-content">
             <h1>Welcome Back, <span style = "color:purple" th:text=${session.employee.id} > John </span> </h1>
             <div class="balance-display">
-                <h2>Current Balance: 2,450 Credits</h2>
+                <h2>Current Balance: 0 Credits</h2>
             </div>
 
             <!-- Features Grid -->
@@ -212,7 +212,7 @@
                         <h3>Transactions</h3>
                     </div>
                     <div class="card-actions">
-                        <a href="#send-money" class="action-btn">Send Money</a>
+                        <a href="app/transfer" class="action-btn">Send Money</a>
                         <a href="#request-funds" class="action-btn">Request Funds</a>
                         <a href="#history" class="action-btn">Transaction History</a>
                     </div>

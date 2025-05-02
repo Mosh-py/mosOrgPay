@@ -1,5 +1,6 @@
 package org.mosorgpay.model;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -33,6 +34,8 @@ public class Employee {
 	
 	private String password;
 	
+	private BigDecimal balance = new BigDecimal(0);
+	
 	@ManyToOne
 	@JoinColumn(name = "organisationId")
 	private Organisation  organisation;
@@ -54,7 +57,13 @@ public class Employee {
 		return id;
 	}
 
-
+	public BigDecimal getBalance() {
+		return balance;
+	}
+	
+	public void setBalance(BigDecimal newBalance) {
+		this.balance = newBalance;
+	}
 
 	public void setId(String id) {
 		this.id = id;

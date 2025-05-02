@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>profile viewer</title>
 </head>
 <body>
 	 
@@ -11,6 +11,16 @@
 	 	<tr>
 	 		<td> Name </td>
 	 		<td th:text=${session.employee.firstName}> Your name </td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td> email </td>
+	 		<td th:text=${session.employee.emailAddress}> </td>
+	 	</tr>
+	 	
+	 	<tr>
+	 		<td> phoneNumber </td>
+	 		<td th:text=${session.employee.phoneNumber}> </td>
 	 	</tr>
 	 </table>
 </body>

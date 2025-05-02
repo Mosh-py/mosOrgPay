@@ -60,8 +60,13 @@ public class HomeController {
 	}
 
 	@PostMapping("/employeeSignUp")	
-	public String submitEmployeeDetails(@ModelAttribute EmployeeDto employeeDto) {
-		employeeService.register(employeeDto);
+	public String submitEmployeeDetails(@ModelAttribute EmployeeDto employeeDto, Model model) {
+		String myResponse = employeeService.register(employeeDto);
+		if (myResponse != "done") {
+			logger.info(" User does'nt have valid organisation");
+			model.addAttribute("message", "Sorry, you have to include the relevant company code");		
+			return "employeeSignUp";
+		}
 		return "test";
 	}
 	
