@@ -1,5 +1,6 @@
 package org.mosorgpay.controller;
 
+import java.math.BigDecimal;
 import java.util.logging.Logger;
 
 import org.mosorgpay.dto.EmployeeDto;
@@ -77,9 +78,19 @@ public class HomeController {
 	
 	@GetMapping("/dashboard")
 	public String getDashboardPage(Authentication auth, HttpSession session) {
-		var name = auth.getName();
-		Employee employee = employeeService.fetchEmployee(name);
-		session.setAttribute("employee", employee);
+		
+		try {
+			
+			var name = auth.getName();
+			Employee employee = employeeService.fetchEmployee(name);
+			BigDecimal balance = employee.getBalance();
+			session.setAttribute("balance", balance);
+			session.setAttribute("employee", employee);
+			
+		} catch (NullPointerException e){
+			return "employeeLogIn";
+		}
+		
 		return "employeeWelcome";
 	}
 	

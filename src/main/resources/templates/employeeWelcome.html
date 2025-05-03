@@ -187,7 +187,7 @@
         <main class="main-content">
             <h1>Welcome Back, <span style = "color:purple" th:text=${session.employee.id} > John </span> </h1>
             <div class="balance-display">
-                <h2>Current Balance: 0 Credits</h2>
+                <h2>Current Balance: <span th:text=${session.balance}></span> Credits</h2>
             </div>
 
             <!-- Features Grid -->

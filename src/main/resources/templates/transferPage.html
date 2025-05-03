@@ -1,10 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Credits - MosorgPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6C43B9 0%, #8E6DD7 100%);
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            color: #6C43B9;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+            background: linear-gradient(45deg, #6C43B9 30%, #8E6DD7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4A2D7A;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding-left: 40px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8E6DD7;
+            box-shadow: 0 0 8px rgba(142, 109, 215, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 12px;
+            top: 38px;
+            color: #6C43B9;
+        }
+
+        button {
+            background: linear-gradient(135deg, #6C43B9 0%, #4A2D7A 100%);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #6C43B9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #4A2D7A;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 25px;
+            }
+            
+            h2 {
+                font-size: 1.75em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="form-container">
+        <h2>Transfer Credits</h2>
+        <form method="post" action="/app/transfer">
+            <div class="form-group">
+                <label for="receiverId">Recipient ID</label>
+                <i class="fas fa-user-tag input-icon"></i>
+                <input type="text" 
+                       id="receiverId" 
+                       name="receiverId" 
+                       placeholder="Enter recipient's ID"
+                       required>
+            </div>
 
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <i class="fas fa-coins input-icon"></i>
+                <input type="number" 
+                       id="amount" 
+                       name="amount" 
+                       placeholder="Enter amount in credits"
+                       min="1"
+                       step="1"
+                       required>
+            </div>
+
+            <button type="submit">Transfer Now</button>
+            
+            <div class="back-link">
+                <a href="/dashboard"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

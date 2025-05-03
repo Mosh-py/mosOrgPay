@@ -1,5 +1,6 @@
 package org.mosorgpay.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
@@ -23,12 +24,19 @@ public class Transaction {
 	private UUID id;
 	
 	@ManyToOne
-	@JoinColumn(name = "employeeId")
+	@JoinColumn(name = "senderId")
 	private Employee employee;
+	
+	private BigDecimal amount;
 	private LocalDateTime date;
 	
-	private String Sender;
-	 
+	
+	private String receiver;
+	
+	public void setEmployee(Employee employee) {
+		this.employee= employee;
+	}
+	
 	
 	
 }
