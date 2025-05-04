@@ -187,7 +187,7 @@
         <main class="main-content">
             <h1>Welcome Back, <span style = "color:purple" th:text=${session.employee.id} > John </span> </h1>
             <div class="balance-display">
-                <h2>Current Balance: <span th:text=${session.balance}></span> Credits</h2>
+                <h2>Current Balance: <span th:text=${session.balance} id = "balance"></span> Credits</h2>
             </div>
 
             <!-- Features Grid -->
@@ -255,6 +255,35 @@
             const chatWidget = document.getElementById('chatWidget');
             chatWidget.style.display = chatWidget.style.display === 'block' ? 'none' : 'block';
         }
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const socket = new WebSocket('ws://localhost:8081/hello');
+            
+
+            socket.onopen = function() {
+                console.log('WebSocket connected!');
+                // Hide loader when connection is open
+            };
+
+            socket.onmessage = function(event) {
+                const message = JSON.parse(event.data);
+                console.log(message);
+                if (message.balance) {
+                    document.getElementById('balance').textContent = message.balance;
+                    
+                    console.log('Updated Balance:', message.balance);
+                }
+            };
+
+            socket.onerror = function(error) {
+                console.error('WebSocket error:', error);
+                //document.getElementById('balance').textContent = "Error loading balance";
+            };
+
+            socket.onclose = function() {
+                console.log('WebSocket connection closed');
+            };
+        })
     </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package org.mosorgpay.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.logging.Logger;
 
@@ -31,7 +32,7 @@ public class TransferController {
 	}
 	
 	@PostMapping("/transfer")
-	public String doTransfer(@RequestParam String receiverId, @RequestParam BigDecimal amount, HttpSession session) {
+	public String doTransfer(@RequestParam String receiverId, @RequestParam BigDecimal amount, HttpSession session) throws IOException {
 		
 		Employee sender =  (Employee) session.getAttribute("employee");
 		transferService.transfer(amount, sender , receiverId );
