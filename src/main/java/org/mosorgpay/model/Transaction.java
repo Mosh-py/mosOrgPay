@@ -24,7 +24,7 @@ public class Transaction {
 	private UUID id;
 	
 	@ManyToOne
-	@JoinColumn(name = "senderId")
+	@JoinColumn(name = "senderEmail")
 	private Employee employee;
 	
 	private BigDecimal amount;

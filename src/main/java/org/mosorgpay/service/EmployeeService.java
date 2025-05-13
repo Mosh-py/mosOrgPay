@@ -33,11 +33,12 @@ public class EmployeeService implements Service {
 		employee.setEmailAddress(dto.getEmailAddress());
 		employee.setFirstName(dto.getFirstName());
 		System.out.println(dto.getId());
-		employee.setId(dto.getId());
+		employee.setUsername(dto.getId());
 
 		employee.setPassword(passwordEncoder.encode(dto.getPassword()));
 		employee.setPhoneNumber(dto.getPhoneNumber());
 		employee.setSecondName(dto.getSecondName());
+		
 		try {
 			String organizationCode = dto.getOrganisationCode();
 			System.out.println(organizationCode);
@@ -54,7 +55,7 @@ public class EmployeeService implements Service {
 
 	public Employee fetchEmployee(String name) {
 		return repository.findById(name)
-				.orElseThrow(() -> new UsernameNotFoundException(" Could.nt find the " + "motherfuckng user"));
+				.orElseThrow(() -> new UsernameNotFoundException(" Could.nt find the " + " user"));
 	}
 
 	public String delete(Object obj) {

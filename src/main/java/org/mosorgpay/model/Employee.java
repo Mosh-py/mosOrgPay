@@ -24,10 +24,12 @@ import lombok.ToString;
 @Table(name = "Employees")
 public class Employee {
 
-	@Id
-	private String id;
+	
+	private String username;
 	private String firstName;
 	private String secondName;
+	
+	@Id
 	private String emailAddress;
 	private String phoneNumber;
 	
@@ -53,8 +55,8 @@ public class Employee {
 		return Collections.unmodifiableSet(transactions);
 	}
 
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
 
 	public BigDecimal getBalance() {
@@ -65,17 +67,13 @@ public class Employee {
 		this.balance = newBalance;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
-
 
 	public String getFirstName() {
 		return firstName;
 	}
-
-
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -145,7 +143,7 @@ public class Employee {
 
 	@Override 
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", emailAddress="
+		return "Employee [=" + username + ", firstName=" + firstName + ", secondName=" + secondName + ", emailAddress="
 				+ emailAddress + ", phoneNumber=" + phoneNumber + ", organisation=" + organisation + ", transactions="
 				+ transactions + "]";
 	}

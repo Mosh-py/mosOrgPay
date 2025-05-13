@@ -185,7 +185,7 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <h1>Welcome Back, <span style = "color:purple" th:text=${session.employee.id} > John </span> </h1>
+            <h1>Welcome Back, <span style = "color:purple" th:text=${session.employee.username} > John </span> </h1>
             <div class="balance-display">
                 <h2>Current Balance: <span th:text=${session.balance} id = "balance"></span> Credits</h2>
             </div>
@@ -267,7 +267,7 @@
 
             socket.onmessage = function(event) {
                 const message = JSON.parse(event.data);
-                console.log(message);
+                console.log(" Hi, everyone ++");
                 if (message.balance) {
                     document.getElementById('balance').textContent = message.balance;
                     

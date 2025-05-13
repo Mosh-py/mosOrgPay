@@ -82,6 +82,7 @@ public class HomeController {
 		try {
 			
 			var name = auth.getName();
+			
 			Employee employee = employeeService.fetchEmployee(name);
 			BigDecimal balance = employee.getBalance();
 			session.setAttribute("balance", balance);

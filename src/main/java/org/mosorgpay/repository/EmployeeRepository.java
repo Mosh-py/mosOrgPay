@@ -3,6 +3,7 @@ package org.mosorgpay.repository;
 
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 import org.mosorgpay.model.Employee;
@@ -17,7 +18,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
 	
 	Employee findByEmailAddress(String email);
 	
+	List<Employee> findAllByUsername(String username);
+	
+	Employee findByUsername(String username);
 	@Modifying
-	@Query("UPDATE Employee a set a.balance = :balance WHERE a.id = :id ")
-	void updateBalance(@Param("balance") BigDecimal balance, @Param("id") String id);
+	@Query("UPDATE Employee a set a.balance = :balance WHERE a.emailAddress = :email")
+	void updateBalance(@Param("balance") BigDecimal balance, @Param("email") String email);
 }

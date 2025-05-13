@@ -36,7 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		logger.info(employee.getFirstName());
 		logger.info(employee.getPassword());
 		
-		return new User(employee.getId(), employee.getPassword(), List.of(new SimpleGrantedAuthority("worker")));
+		return new User(employee.getEmailAddress(), employee.getPassword(), List.of(new SimpleGrantedAuthority("worker")));
 	}
 
 }
