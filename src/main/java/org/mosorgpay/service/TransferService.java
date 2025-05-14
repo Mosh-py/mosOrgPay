@@ -88,6 +88,7 @@ public class TransferService {
 			String senderId = sender.getEmailAddress();
 			logger.info(senderId);;
 			String receiverId = receiver.getEmailAddress();
+			handler.handleSomeStuff(null, null);
 			employeeRepository.updateBalance(newSenderBalance ,senderId);
 			employeeRepository.updateBalance(newReceiverBalance, receiverId);
 			logger.info(sender.getUsername());

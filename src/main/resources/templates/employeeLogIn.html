@@ -168,7 +168,10 @@
             </div>
 
             <button type="submit" class="login-btn">Sign In</button>
-
+			
+			<section th:if="${param.error}">
+				<p  style = "color:red"> Invalid email or password </p>
+			</section>
             <div class="forgot-password">
                 <a href="/forgot-password">Forgot Password?</a>
             </div>

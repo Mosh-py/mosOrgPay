@@ -23,7 +23,7 @@ public class ProjectConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.userDetailsService(customUserDetailsService);
-		http.formLogin(c->c.loginPage("/employeeLogin").defaultSuccessUrl("/dashboard").failureUrl("/employeeSignUp"));
+		http.formLogin(c->c.loginPage("/employeeLogin").defaultSuccessUrl("/dashboard"));
 		http.csrf(c->{
 			try {
 				c.disable();
