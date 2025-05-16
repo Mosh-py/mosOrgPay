@@ -19,7 +19,7 @@ public class MoneyRequest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String lendeeId;
-	private String requesteeId;
-	private LocalDateTime time;
-	private Status status = Status.PENDING;
+	private String borrowerId;
+	private LocalDateTime date;
+	private String status = Status.PENDING.toString();
 }

@@ -1,27 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>profile viewer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | MosorgPay</title>
+    <!-- Using same CDN as other pages -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Quick reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #6C43B9 0%, #8E6DD7 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .profile-card {
+            background: rgba(255,255,255,0.95);
+            max-width: 600px;
+            margin: 2rem auto;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #6C43B9;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(108, 67, 185, 0.05);
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            width: 120px;
+            color: #4A2D7A;
+            font-weight: 500;
+            margin-right: 1rem;
+        }
+
+        .detail-value {
+            color: #333;
+            flex-grow: 1;
+        }
+
+        .security-badge {
+            background: #2ECC71;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+        }
+
+        .action-btns {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-edit {
+            background: #6C43B9;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #5a35a0;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-	 
-	 
-	 <table>
-	 	<tr>
-	 		<td> Name </td>
-	 		<td th:text=${session.employee.firstName}> Your name </td>
-	 	</tr>
-	 	
-	 	<tr>
-	 		<td> email </td>
-	 		<td th:text=${session.employee.emailAddress}> </td>
-	 	</tr>
-	 	
-	 	<tr>
-	 		<td> phoneNumber </td>
-	 		<td th:text=${session.employee.phoneNumber}> </td>
-	 	</tr>
-	 </table>
+
+<div class="profile-card">
+    <div class="profile-header">
+        <div class="profile-pic">
+            <!-- TODO: Add actual image upload -->
+            <i class="fas fa-user"></i>
+        </div>
+        <h2 th:text="${session.employee.firstName + ' ' + session.employee.secondName}">John Doe</h2>
+    </div>
+
+    <div class="detail-row">
+        <span class="detail-label">
+            <i class="fas fa-envelope"></i> Email
+        </span>
+        <span class="detail-value" th:text="${session.employee.emailAddress}">john@company.com</span>
+    </div>
+
+    <div class="detail-row">
+        <span class="detail-label">
+            <i class="fas fa-phone"></i> Phone
+        </span>
+        <span class="detail-value" th:text="${session.employee.phoneNumber}">+1 234 567 890</span>
+    </div>
+
+    <div class="detail-row">
+        <span class="detail-label">
+            <i class="fas fa-shield-alt"></i> Security
+        </span>
+        <span class="detail-value">
+            2FA Enabled
+            <span class="security-badge">Active</span>
+        </span>
+    </div>
+
+    <div class="action-btns">
+        <button class="btn btn-edit">
+            <i class="fas fa-edit"></i> Edit Profile
+        </button>
+        <button class="btn btn-edit">
+            <i class="fas fa-lock"></i> Change Password
+        </button>
+    </div>
+</div>
+
+<!-- TODO: Add footer navigation links -->
+
 </body>
 </html>

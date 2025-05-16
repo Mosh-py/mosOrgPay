@@ -1,20 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Funds | MosorgPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6C43B9 0%, #8E6DD7 100%);
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            color: #6C43B9;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4A2D7A;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding-left: 40px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8E6DD7;
+            box-shadow: 0 0 8px rgba(142, 109, 215, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 12px;
+            top: 38px;
+            color: #6C43B9;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #6C43B9 0%, #4A2D7A 100%);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+        }
+
+        #status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(108, 67, 185, 0.1);
+            color: #4A2D7A;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-	
-	<form action ="app/requestMoney" method = "post">
-		
-		<label for = lendeeId> Lendee id</label>
-		<input type = text name = lendeeId placeholder = "Ender the id of the person" required>
-		
-		<label for = amount> Amount</label>
-		<input type = text name = amount placeholder = "Enter the amount" required>
-		
-		<input type = submit >
-	</form>
+    <div class="form-container">
+        <h2>Request Funds</h2>
+        <form action="/app/requestMoney" method="post" target="_blank">
+            <div class="form-group">
+                <label for="lendeeId">Recipient ID</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" 
+                       id="lendeeId" 
+                       name="lendeeId" 
+                       placeholder="Enter recipient's ID"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <i class="fas fa-coins input-icon"></i>
+                <input type="number" 
+                       id="amount" 
+                       name="amount" 
+                       placeholder="Enter amount in credits"
+                       min="1"
+                       required>
+            </div>
+
+            <button type="submit">Send Request</button>
+        </form>
+        <div id="status">Connection status will appear here</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const statusDiv = document.getElementById('status');
+            
+            const eventSource = new EventSource("http://localhost:8081/app/requestMoney/subscrib");
+            
+            eventSource.onopen = () => {
+                statusDiv.style.display = 'block';
+                statusDiv.textContent = "Connected to real-time updates ✔️";
+            };
+
+            eventSource.addEventListener("moneyRequest", function(e) {
+                console.log("New request:", e.data);
+                // Add visual notification here if needed
+            });
+
+            eventSource.onerror = (err) => {
+                console.error("EventSource failed:", err);
+                statusDiv.textContent = "Connection lost ⚠️";
+                statusDiv.style.background = "rgba(255,0,0,0.1)";
+            };
+        });
+    </script>
 </body>
 </html>
