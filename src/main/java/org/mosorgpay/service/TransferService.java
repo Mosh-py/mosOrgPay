@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.mosorgpay.apiResponse.TransferApiResponse;
 import org.mosorgpay.exception.NotEnoughBalanceException;
 import org.mosorgpay.exception.PersonelNotFoundException;
 import org.mosorgpay.handler.CustomWebSocketHandler;
@@ -62,14 +63,14 @@ public class TransferService {
 	 * 
 	 */
 	@Transactional
-	public String transfer(BigDecimal amount, Employee sender, String employeeUsername) throws IOException {
+	public TransferApiResponse transfer(BigDecimal amount, Employee sender, String employeeUsername) throws IOException {
 		
 		
 		BigDecimal senderBalance = sender.getBalance();
 		
 		List<Employee> possibleEmployees = employeeRepository.findAllByUsername(employeeUsername);
 		
-		
+		TransferApiResponse transferApiResponse = new TransferApiResponse();
 		try {
 			Employee receiver = findTheReceiver(sender, possibleEmployees);
 			
@@ -92,14 +93,19 @@ public class TransferService {
 			employeeRepository.updateBalance(newSenderBalance ,senderId);
 			employeeRepository.updateBalance(newReceiverBalance, receiverId);
 			logger.info(sender.getUsername());
+			transferApiResponse.setReceiverEmail(receiverId);
+			transferApiResponse.setReceiverBalance(newReceiverBalance.toString());
 		} catch( NotEnoughBalanceException e) {
-			return "not Enough Money";
+			transferApiResponse.setStatus("Not enough Money");			
+			return transferApiResponse;
 		} catch (PersonelNotFoundException e) {
-			return " Person Not found ";
+			transferApiResponse.setStatus(" Person Not Found");		
+			return transferApiResponse;
 		} catch(Exception e) {
 			e.printStackTrace();
-			return " Something went wrong, kindly try again ";
+			transferApiResponse.setStatus(" Something went wrong, kindly try again later");;
+			return transferApiResponse;
 		}
-		
-		return "okay";
+		transferApiResponse.setStatus("okay");
+		return transferApiResponse;
 	}}

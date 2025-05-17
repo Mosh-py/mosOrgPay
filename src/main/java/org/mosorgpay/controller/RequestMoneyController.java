@@ -27,8 +27,8 @@ public class RequestMoneyController {
 
 	private final RequestMoneyService requestMoneyService;
 	
-//	private Map<String, SseEmitter> emitters = new HashMap<>();
-	private List<SseEmitter> emitters = new CopyOnWriteArrayList<SseEmitter>();
+	private Map<String, SseEmitter> emitters = new HashMap<>();
+//	private List<SseEmitter> emitters = new CopyOnWriteArrayList<SseEmitter>();
 	private final Logger logger = Logger.getLogger(RequestMoneyController.class.toString());
 	public RequestMoneyController(RequestMoneyService requestMoneyService) {
 		this.requestMoneyService = requestMoneyService;
@@ -49,8 +49,8 @@ public class RequestMoneyController {
 			e.printStackTrace()  ;
 		}
 		emitter.onCompletion(()-> emitters.remove(emitter));
-//		emitters.put(username, emitter);
-		emitters.add(emitter);
+		emitters.put(username, emitter);
+//		emitters.add(emitter);
 		return emitter;
 		
 	}
@@ -68,24 +68,32 @@ public class RequestMoneyController {
 		
 		
 		Employee employee = (Employee) session.getAttribute("employee");
-//		
-//		String targetUsername = moneyRequestDto.getLendeeId();
-//	
-//		emitters.forEach((k,v)->{
-//			if (k.equals(targetUsername)) {
-//				
-//			}
-//		})
-		for (SseEmitter emitter: emitters) {
-			try {
-				emitter.send(SseEmitter.event().name("moneyRequest").data("Hi"));
-				requestMoneyService.requestFunds(employee, moneyRequestDto);
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+		String targetUsername = moneyRequestDto.getLendeeId().toLowerCase();
+	
+		emitters.forEach((k,emitter)->{
+			if (k.equals(targetUsername)) {
+				try {
+					logger.info(k);
+					emitter.send(SseEmitter.event().name("moneyRequest").data("Hi"));
+					requestMoneyService.requestFunds(employee, moneyRequestDto);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		}
+		});
+		
+//		for (SseEmitter emitter: emitters) {
+//			try {
+//				emitter.send(SseEmitter.event().name("moneyRequest").data("Hi"));
+//				requestMoneyService.requestFunds(employee, moneyRequestDto);
+//				
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 		return "test";
 	}
 

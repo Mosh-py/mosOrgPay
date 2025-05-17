@@ -132,17 +132,19 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const statusDiv = document.getElementById('status');
+        	
+            const statusDiv = document.getElementById('status'); 
             
-            const eventSource = new EventSource("http://localhost:8081/app/requestMoney/subscrib");
+            const eventSource = new EventSource("http://localhost:8081/app/requestMoney/subscribe");
             
             eventSource.onopen = () => {
                 statusDiv.style.display = 'block';
-                statusDiv.textContent = "Connected to real-time updates ✔️";
+                statusDiv.textContent = "Connected to a real-time updates ✔️";
             };
 
             eventSource.addEventListener("moneyRequest", function(e) {
                 console.log("New request:", e.data);
+                alert(" Hi there, you ve got a new request notification ");
                 // Add visual notification here if needed
             });
 

@@ -249,41 +249,19 @@
             </div>
         </main>
     </div>
-
-    <script>
-        function toggleChat() {
-            const chatWidget = document.getElementById('chatWidget');
-            chatWidget.style.display = chatWidget.style.display === 'block' ? 'none' : 'block';
-        }
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            const socket = new WebSocket('ws://localhost:8081/hello');
-            
-
-            socket.onopen = function() {
-                console.log('WebSocket connected!');
-                // Hide loader when connection is open
-            };
-
-            socket.onmessage = function(event) {
-                const message = JSON.parse(event.data);
-                console.log(" Hi, everyone ++");
-                if (message.balance) {
-                    document.getElementById('balance').textContent = message.balance;
-                    
-                    console.log('Updated Balance:', message.balance);
-                }
-            };
-
-            socket.onerror = function(error) {
-                console.error('WebSocket error:', error);
-                //document.getElementById('balance').textContent = "Error loading balance";
-            };
-
-            socket.onclose = function() {
-                console.log('WebSocket connection closed');
-            };
-        })
-    </script>
 </body>
-</html>
+    <script>
+    
+    	document.addEventListener('DOMContentLoaded', function () {
+    		var eventSource = new EventSource("http://localhost:8081/app/balanceUpdates");
+    		
+    		eventSource.addEventListener("BalanceUpdate", function(e){
+    			console.log("yooo");
+    			console.log("data: " + e.data);
+    			const balance = document.getElementById("balance");
+    			balance.textContent = e.data;
+    		})
+    	})
+    
+    </script>
+ </html>

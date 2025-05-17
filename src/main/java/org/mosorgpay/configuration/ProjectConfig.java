@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class ProjectConfig {
 
-	
+	@Lazy
 	private final CustomUserDetailsService customUserDetailsService;
 	
 	public ProjectConfig(CustomUserDetailsService customUserDetailsService) {
